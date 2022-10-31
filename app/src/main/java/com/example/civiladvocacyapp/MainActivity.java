@@ -4,6 +4,8 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -17,14 +19,31 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity
         implements View.OnClickListener{
+
+    private RecyclerView recyclerView;
+    //private OfficialAdapter oAdapter;
+    private static final String TAG = "MainActivity";
+    private List<Official> officials = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setTitle("Civil Advocacy");
+        //RecyclerView stuff
+        recyclerView = findViewById(R.id.person_rv);
+        OfficialAdapter oAdapter = new OfficialAdapter(officials, this);
+        recyclerView.setAdapter(oAdapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        for (int i = 0; i <= 10; i++) {
+            officials.add(new Official("Joe Biden", "President of the United States", "Democratic Party"));
+        }
     }
 
     @Override
@@ -67,6 +86,8 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onClick(View view) {
-        Toast.makeText(this, "Clicked on a official's profile", Toast.LENGTH_SHORT).show();
+        //int pos = recyclerView.getChildLayoutPosition(view);
+        //Official o = officials.get(pos);
+        Toast.makeText(this, "Clicked on an official's profile", Toast.LENGTH_SHORT).show();
     }
 }
