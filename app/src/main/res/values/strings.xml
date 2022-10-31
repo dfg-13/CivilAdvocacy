@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">CivilAdvocacyApp</string>
+    <string name="location_address">location/address</string>
+    <string name="info">info</string>
+    <string name="searchLocation">searchLocation</string>
+    <string name="civil_advocacy">Civil Advocacy</string>
+    <string name="version_1_0">Version 1.0</string>
+    <string name="_2022_david_galicia">Ⓒ 2022, David Galicia</string>
+    <string name="data_provided_by">Data provided by</string>
+    <string name="google_civic_information_api"><a href="https://developers.google.com/civic-information/">Google Civic Information API</a></string>
+    <string name="govtitle">govTitle</string>
+    <string name="name_party">name_party</string>
+    <string name="official_name">OFFICIAL NAME</string>
+    <string name="party_name">party name</string>
+    <string name="office_role">Office Role</string>
+    <string name="full_address">full address</string>
+    <string name="full_phone_number">full phone number</string>
+    <string name="full_email_address">full email address</string>
+    <string name="full_website">full website</string>
+</resources>
