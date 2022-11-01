@@ -15,7 +15,7 @@ public class OfficialViewHolder extends RecyclerView.ViewHolder {
 
     public OfficialViewHolder(@NonNull View itemView) {
         super(itemView);
-        title = itemView.findViewById(R.id.title_tv);
+        title = itemView.findViewById(R.id.position_tv);
         name = itemView.findViewById(R.id.personName_tv);
         picture = itemView.findViewById(R.id.personPic_IV);
     }

@@ -28,7 +28,7 @@
         app:layout_constraintGuide_percent="0.25"/>
 
     <TextView
-        android:id="@+id/postition_tv"
+        android:id="@+id/position_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -49,7 +49,7 @@
         android:textColor="#151515"
         android:textSize="17sp"
         app:layout_constraintStart_toStartOf="@+id/guideline9"
-        app:layout_constraintTop_toBottomOf="@+id/postition_tv" />
+        app:layout_constraintTop_toBottomOf="@+id/position_tv" />
 
     <ImageView
         android:id="@+id/personPic_IV"
