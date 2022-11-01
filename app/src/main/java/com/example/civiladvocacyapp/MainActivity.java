@@ -29,6 +29,11 @@ public class MainActivity extends AppCompatActivity
     //private OfficialAdapter oAdapter;
     private static final String TAG = "MainActivity";
     private List<Official> officials = new ArrayList<>();
+    /////////////////////////////////////////////////////////
+    private final String civicURL = "https://www.googleapis.com/civicinfo/v2/representatives?";
+    private final String apiKey = "AIzaSyAZR89q5oXtnQuzu_b5sMK9S4-M6Xh870I";
+    /////////////////////////////////////////////////////////
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

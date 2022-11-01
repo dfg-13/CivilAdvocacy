@@ -36,6 +36,11 @@ public class OfficialAdapter extends RecyclerView.Adapter<OfficialViewHolder>{
         Log.d(TAG, "onBindViewHolder: FILLING VIEW HOLDER Official " + position);
         Official official = officialList.get(position);
 
+        String party = official.getParty();
+        String name = official.getName();
+        holder.name.setText(name + " (" + party + ")");
+        holder.title.setText(official.getGovernmentTitle());
+
 
     }
 
