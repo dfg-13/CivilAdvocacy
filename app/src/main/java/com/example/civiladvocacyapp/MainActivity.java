@@ -9,6 +9,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.Gravity;
@@ -17,6 +19,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -29,10 +32,7 @@ public class MainActivity extends AppCompatActivity
     //private OfficialAdapter oAdapter;
     private static final String TAG = "MainActivity";
     private List<Official> officials = new ArrayList<>();
-    /////////////////////////////////////////////////////////
-    private final String civicURL = "https://www.googleapis.com/civicinfo/v2/representatives?";
-    private final String apiKey = "AIzaSyAZR89q5oXtnQuzu_b5sMK9S4-M6Xh870I";
-    /////////////////////////////////////////////////////////
+    private TextView location;
 
 
     @Override
@@ -45,6 +45,13 @@ public class MainActivity extends AppCompatActivity
         OfficialAdapter oAdapter = new OfficialAdapter(officials, this);
         recyclerView.setAdapter(oAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        location = findViewById(R.id.location_tv);
+
+        if(!hasNetworkConnection()){
+            recyclerView.setVisibility(View.INVISIBLE);
+            location.setText("No data for location");
+        }
 
         for (int i = 0; i <= 10; i++) {
             officials.add(new Official("Joe Biden", "President of the United States", "Democratic Party"));
@@ -84,6 +91,7 @@ public class MainActivity extends AppCompatActivity
                 builder.setNegativeButton("Cancel", (dialog, id) -> {});
                 AlertDialog dialog = builder.create();
                 dialog.show();
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -91,8 +99,16 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onClick(View view) {
-        //int pos = recyclerView.getChildLayoutPosition(view);
-        //Official o = officials.get(pos);
+        int pos = recyclerView.getChildLayoutPosition(view);
+        Official o = officials.get(pos);
         Toast.makeText(this, "Clicked on an official's profile", Toast.LENGTH_SHORT).show();
+        //startActivity();
     }
+
+    private boolean hasNetworkConnection() {
+        ConnectivityManager connectivityManager = getSystemService(ConnectivityManager.class);
+        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+        return (networkInfo != null && networkInfo.isConnectedOrConnecting());
+    }
+
 }
