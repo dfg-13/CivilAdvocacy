@@ -8,6 +8,7 @@ public class Official implements Serializable {
     //Contact info given it is provided
     private String officeAddress, phoneNum, email, website;
     private String ytLink, twitLink, fbLink;
+    private String photoLink;
 
     public Official(String name, String governmentTitle, String party) {
         setName(name);
@@ -93,5 +94,13 @@ public class Official implements Serializable {
 
     public void setFbLink(String fbLink) {
         this.fbLink = fbLink;
+    }
+
+    public String getPhotoLink() {
+        return photoLink;
+    }
+
+    public void setPhotoLink(String photoLink) {
+        this.photoLink = photoLink;
     }
 }

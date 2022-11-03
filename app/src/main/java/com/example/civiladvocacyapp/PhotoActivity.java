@@ -23,6 +23,7 @@ public class PhotoActivity extends AppCompatActivity {
         setContentView(R.layout.photo_activity);
         setTitle("Civil Advocacy");
 
+        profilePic = findViewById(R.id.fullPhoto);
         partyLogo = findViewById(R.id.party);
 
     }

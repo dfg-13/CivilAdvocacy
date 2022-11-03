@@ -43,6 +43,7 @@ public class MainActivity extends AppCompatActivity
     private String loc;
     private FusedLocationProviderClient mFusedLocationClient;
     private static final int LOCATION_REQUEST = 111;
+
     private RecyclerView recyclerView;
     //private OfficialAdapter oAdapter;
     private static final String TAG = "MainActivity";
@@ -62,6 +63,7 @@ public class MainActivity extends AppCompatActivity
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
+        determineLocation();
 
         locationTV = findViewById(R.id.location_tv);
 
