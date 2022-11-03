@@ -1,10 +1,13 @@
 package com.example.civiladvocacyapp;
 
-public class Official {
+import java.io.Serializable;
+
+public class Official implements Serializable {
     //Basic official data
     private String name, governmentTitle, party;
     //Contact info given it is provided
-    //private String officeAddress, phoneNum, email, website;
+    private String officeAddress, phoneNum, email, website;
+    private String ytLink, twitLink, fbLink;
 
     public Official(String name, String governmentTitle, String party) {
         setName(name);
@@ -34,5 +37,61 @@ public class Official {
 
     public void setParty(String party) {
         this.party = party;
+    }
+
+    public String getOfficeAddress() {
+        return officeAddress;
+    }
+
+    public void setOfficeAddress(String officeAddress) {
+        this.officeAddress = officeAddress;
+    }
+
+    public String getPhoneNum() {
+        return phoneNum;
+    }
+
+    public void setPhoneNum(String phoneNum) {
+        this.phoneNum = phoneNum;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getWebsite() {
+        return website;
+    }
+
+    public void setWebsite(String website) {
+        this.website = website;
+    }
+
+    public String getYtLink() {
+        return ytLink;
+    }
+
+    public void setYtLink(String ytLink) {
+        this.ytLink = ytLink;
+    }
+
+    public String getTwitLink() {
+        return twitLink;
+    }
+
+    public void setTwitLink(String twitLink) {
+        this.twitLink = twitLink;
+    }
+
+    public String getFbLink() {
+        return fbLink;
+    }
+
+    public void setFbLink(String fbLink) {
+        this.fbLink = fbLink;
     }
 }
