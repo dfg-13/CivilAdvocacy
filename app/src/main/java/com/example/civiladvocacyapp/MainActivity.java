@@ -190,8 +190,9 @@ public class MainActivity extends AppCompatActivity
     public void onClick(View view) {
         int pos = recyclerView.getChildLayoutPosition(view);
         Official o = officials.get(pos);
-        Toast.makeText(this, "Clicked on an official's profile", Toast.LENGTH_SHORT).show();
-        //startActivity();
+        Intent intent = new Intent(this, OfficialActivity.class);
+        intent.putExtra("OFFICIAL_INFO", o);
+        startActivity(intent);
     }
 
     private boolean hasNetworkConnection() {

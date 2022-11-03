@@ -53,14 +53,16 @@ public class OfficialRunnable implements Runnable{
         reqQueue.add(jor);
     }
 
+    //public void parseJSON(String s){
     public void parseJSON(JSONObject jsonObj){
         try{
+            //JSONObject jsonObj = new JSONObject(s);
             JSONObject nInput = jsonObj.getJSONObject("normalizedInput");
             String street = nInput.getString("line1");
             String city = nInput.getString("city");
             String state = nInput.getString("state");
             String zip = nInput.getString("zip");
-
+            mAct.locationTV.setText(String.format("%s, %s, %s %s", street, city, state, zip));
 
         }
         catch (Exception e){
