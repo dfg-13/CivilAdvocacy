@@ -47,6 +47,7 @@ public class MainActivity extends AppCompatActivity
     private RecyclerView recyclerView;
     //private OfficialAdapter oAdapter;
     private static final String TAG = "MainActivity";
+    private OfficialAdapter oAdapter;
     private List<Official> officials = new ArrayList<>();
     TextView locationTV;
 
@@ -176,8 +177,7 @@ public class MainActivity extends AppCompatActivity
             String city = addresses.get(0).getLocality(); //city name
             String state = addresses.get(0).getAdminArea(); //state name
             String zipcode = addresses.get(0).getPostalCode(); //zipcode
-            sb.append(String.format(
-                    Locale.getDefault(),
+            sb.append(String.format(Locale.getDefault(),
                     "%s %s, %s, %s %s",
                     subThoroughFare, thoroughFare, city, state, zipcode));
         } catch (IOException e) {
@@ -199,6 +199,11 @@ public class MainActivity extends AppCompatActivity
         ConnectivityManager connectivityManager = getSystemService(ConnectivityManager.class);
         NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
         return (networkInfo != null && networkInfo.isConnectedOrConnecting());
+    }
+
+    public void addNewOff(Official o){
+        officials.add(o);
+        oAdapter.notifyDataSetChanged();
     }
 
 }
