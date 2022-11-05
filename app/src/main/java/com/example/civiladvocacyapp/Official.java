@@ -10,10 +10,10 @@ public class Official implements Serializable {
     private String ytLink, twitLink, fbLink;
     private String photoLink;
 
-    public Official(String name, String governmentTitle, String party) {
+    public Official(String name, String governmentTitle) {
         setName(name);
         setGovernmentTitle(governmentTitle);
-        setParty(party);
+        //setParty(party);
     }
 
     public String getName() {
