@@ -107,8 +107,8 @@
         android:layout_marginStart="16dp"
         android:text="@string/full_address"
         android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView4"
-        app:layout_constraintStart_toEndOf="@+id/textView4" />
+        app:layout_constraintBottom_toBottomOf="@+id/addressTV"
+        app:layout_constraintStart_toEndOf="@+id/addressTV" />
 
     <TextView
         android:id="@+id/phoneResult"
@@ -117,8 +117,8 @@
         android:layout_marginStart="16dp"
         android:text="@string/full_phone_number"
         android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView5"
-        app:layout_constraintStart_toEndOf="@+id/textView5" />
+        app:layout_constraintBottom_toBottomOf="@+id/phoneTV"
+        app:layout_constraintStart_toEndOf="@+id/phoneTV" />
 
     <TextView
         android:id="@+id/emailResult"
@@ -127,8 +127,8 @@
         android:layout_marginStart="16dp"
         android:text="@string/full_email_address"
         android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView6"
-        app:layout_constraintStart_toEndOf="@+id/textView6" />
+        app:layout_constraintBottom_toBottomOf="@+id/emailTV"
+        app:layout_constraintStart_toEndOf="@+id/emailTV" />
 
     <TextView
         android:id="@+id/siteResult"
@@ -137,8 +137,8 @@
         android:layout_marginStart="16dp"
         android:text="@string/full_website"
         android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView7"
-        app:layout_constraintStart_toEndOf="@+id/textView7" />
+        app:layout_constraintBottom_toBottomOf="@+id/websiteTV"
+        app:layout_constraintStart_toEndOf="@+id/websiteTV" />
 
     <ImageView
         android:id="@+id/photo_iv"
@@ -151,7 +151,7 @@
         app:srcCompat="@drawable/missing" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/addressTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -163,37 +163,37 @@
         app:layout_constraintTop_toTopOf="@+id/guideline11" />
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/phoneTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:text="Phone:"
         android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="@+id/textView4"
-        app:layout_constraintStart_toStartOf="@+id/textView4"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+        app:layout_constraintEnd_toEndOf="@+id/addressTV"
+        app:layout_constraintStart_toStartOf="@+id/addressTV"
+        app:layout_constraintTop_toBottomOf="@+id/addressTV" />
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/emailTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:text="Email:"
         android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="@+id/textView5"
-        app:layout_constraintStart_toStartOf="@+id/textView5"
-        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+        app:layout_constraintEnd_toEndOf="@+id/phoneTV"
+        app:layout_constraintStart_toStartOf="@+id/phoneTV"
+        app:layout_constraintTop_toBottomOf="@+id/phoneTV" />
 
     <TextView
-        android:id="@+id/textView7"
+        android:id="@+id/websiteTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:text="Website:"
         android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="@+id/textView6"
-        app:layout_constraintStart_toStartOf="@+id/textView6"
-        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+        app:layout_constraintEnd_toEndOf="@+id/emailTV"
+        app:layout_constraintStart_toStartOf="@+id/emailTV"
+        app:layout_constraintTop_toBottomOf="@+id/emailTV" />
 
     <ImageView
         android:id="@+id/fbLogo"

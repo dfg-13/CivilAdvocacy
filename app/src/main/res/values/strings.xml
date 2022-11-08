@@ -17,4 +17,8 @@
     <string name="full_phone_number">full phone number</string>
     <string name="full_email_address">full email address</string>
     <string name="full_website">full website</string>
+    <string name="email">Email:</string>
+    <string name="website">Website:</string>
+    <string name="address">Address:</string>
+    <string name="phone">Phone:</string>
 </resources>

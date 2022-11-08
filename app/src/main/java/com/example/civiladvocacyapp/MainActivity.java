@@ -49,8 +49,7 @@ public class MainActivity extends AppCompatActivity
     private static final String TAG = "MainActivity";
     private OfficialAdapter oAdapter;
     private List<Official> officials = new ArrayList<>();
-    TextView locationTV;
-
+    private TextView locationTV;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,8 +73,7 @@ public class MainActivity extends AppCompatActivity
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setTitle("No Network Connection");
             builder.setMessage("Data cannot be accessed/loaded  without a network connection");
-            builder.setPositiveButton("OK", (dialog, id) -> {
-            });
+            builder.setPositiveButton("OK", (dialog, id) -> {});
             AlertDialog dialog = builder.create();
             dialog.show();
         }
@@ -100,27 +98,33 @@ public class MainActivity extends AppCompatActivity
                 startActivity(intent);
                 return true;
             case R.id.searchLocation:
-                AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                builder.setTitle("Enter Address");
-                EditText locationInput = new EditText(this);
-                locationInput.setInputType(InputType.TYPE_CLASS_TEXT);
-                locationInput.setGravity(Gravity.CENTER_HORIZONTAL);
-                builder.setView(locationInput);
+                try{
+                    AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                    builder.setTitle("Enter Address");
+                    EditText locationInput = new EditText(this);
+                    locationInput.setInputType(InputType.TYPE_CLASS_TEXT);
+                    locationInput.setGravity(Gravity.CENTER_HORIZONTAL);
+                    builder.setView(locationInput);
 
-                builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        //TODO: set the location -> do API stuff
-                        locationTV.setText(locationInput.getText().toString());
-                        Toast.makeText(MainActivity.this, "Searched for location", Toast.LENGTH_SHORT).show();
-                    }
-                });
+                    builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            //TODO: set the location -> do API stuff
+                            OfficialRunnable oRun = new OfficialRunnable(MainActivity.this, locationInput.getText().toString());
+                            officials.clear();
+                            locationTV.setText(locationInput.getText().toString());
+                            Toast.makeText(MainActivity.this, "Searched for location", Toast.LENGTH_SHORT).show();
+                            new Thread(oRun).start();
+                        }
+                    });
 
-                builder.setNegativeButton("Cancel", (dialog, id) -> {
-                });
-                AlertDialog dialog = builder.create();
-                dialog.show();
-                return true;
+                    builder.setNegativeButton("Cancel", (dialog, id) -> {
+                    });
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
+                } catch (Exception e){
+                    e.printStackTrace();
+                }
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -151,9 +155,7 @@ public class MainActivity extends AppCompatActivity
     public void onRequestPermissionsResult(int requestCode,
                                            @NonNull String[] permissions,
                                            @NonNull int[] grantResults) {
-
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-
         if (requestCode == LOCATION_REQUEST) {
             if (permissions[0].equals(Manifest.permission.ACCESS_FINE_LOCATION)) {
                 if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
@@ -192,6 +194,7 @@ public class MainActivity extends AppCompatActivity
         Official o = officials.get(pos);
         Intent intent = new Intent(this, OfficialActivity.class);
         intent.putExtra("OFFICIAL_INFO", o);
+        intent.putExtra("LOCATION", loc);
         startActivity(intent);
     }
 
