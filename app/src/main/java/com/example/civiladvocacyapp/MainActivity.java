@@ -106,6 +106,7 @@ public class MainActivity extends AppCompatActivity
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             //TODO: set the location -> do API stuff
+                            loc = locationInput.getText().toString();
                             officials.clear();
                             OfficialRunnable oRun = new OfficialRunnable(MainActivity.this, locationInput.getText().toString());
                             locationTV.setText(locationInput.getText().toString());

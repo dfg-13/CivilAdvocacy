@@ -77,7 +77,7 @@ public class OfficialActivity extends AppCompatActivity {
             location.setText(intent.getStringExtra("LOCATION"));
         }
         if (official.getPhotoLink() != null){
-            downloadImage();
+            downloadImage(official.getPhotoLink());
         }
         else{ //glide error
             Glide.with(this)
@@ -86,7 +86,7 @@ public class OfficialActivity extends AppCompatActivity {
                     .error(R.drawable.brokenimage)
                     .into(profilePic);
         }
-        //noImage();
+        noImage();
         //////////////
         name.setText(official.getName());
         role.setText(official.getGovernmentTitle());
@@ -104,10 +104,10 @@ public class OfficialActivity extends AppCompatActivity {
         }
     }
 
-    private void downloadImage() {
+    private void downloadImage(String link) {
         start = System.currentTimeMillis();
         Glide.with(this)
-                .load(official.getPhotoLink())
+                .load(link)
                 .addListener(new RequestListener<Drawable>() {
                     @Override
                     public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
