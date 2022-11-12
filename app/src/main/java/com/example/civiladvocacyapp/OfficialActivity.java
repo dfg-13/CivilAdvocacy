@@ -239,12 +239,10 @@ public class OfficialActivity extends AppCompatActivity {
     }
 
     public void clickFb(View v){
-        Intent intent = null;
-        String facebookURL = "https://www.facebook.com/";
         try {
             startActivity(openFbIntent());
         } catch (ActivityNotFoundException e) {
-            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com/" + fbLink)));
+            e.printStackTrace();
         }
     }
 
