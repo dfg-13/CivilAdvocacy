@@ -66,6 +66,8 @@ public class OfficialActivity extends AppCompatActivity {
         twitter = findViewById(R.id.twitterLogo);
         fb = findViewById(R.id.fbLogo);
 
+        cl = findViewById(R.id.cl);
+
         Intent intent = getIntent();
         ///////////////////
         if (intent.hasExtra("OFFICIAL_INFO")){
@@ -74,7 +76,6 @@ public class OfficialActivity extends AppCompatActivity {
         if (intent.hasExtra("LOCATION")){
             location.setText(intent.getStringExtra("LOCATION"));
         }
-        noImage();
         if (official.getPhotoLink() != null){
             downloadImage();
         }
@@ -85,7 +86,7 @@ public class OfficialActivity extends AppCompatActivity {
                     .error(R.drawable.brokenimage)
                     .into(profilePic);
         }
-
+        //noImage();
         //////////////
         name.setText(official.getName());
         role.setText(official.getGovernmentTitle());
@@ -95,8 +96,6 @@ public class OfficialActivity extends AppCompatActivity {
         extraInfo();
         //////////////
         partySetter();
-
-
     }
 
     public void noImage(){
@@ -128,32 +127,32 @@ public class OfficialActivity extends AppCompatActivity {
 
     public void extraInfo(){
         if (official.getPhoneNum() == null){
-            phoneTV.setVisibility(View.INVISIBLE);
-            phoneNum.setVisibility(View.INVISIBLE);
+            phoneTV.setVisibility(View.GONE);
+            phoneNum.setVisibility(View.GONE);
         }
         else{
             phoneNum.setText(official.getPhoneNum());
         }
         /////////////
         if (official.getOfficeAddress() == null){
-            addressTV.setVisibility(View.INVISIBLE);
-            address.setVisibility(View.INVISIBLE);
+            addressTV.setVisibility(View.GONE);
+            address.setVisibility(View.GONE);
         }
         else{
             address.setText(official.getOfficeAddress());
         }
         /////////////
         if (official.getWebsite() == null){
-            website.setVisibility(View.INVISIBLE);
-            websiteTV.setVisibility(View.INVISIBLE);
+            website.setVisibility(View.GONE);
+            websiteTV.setVisibility(View.GONE);
         }
         else{
             website.setText(official.getWebsite());
         }
         /////////////
         if (official.getEmail() == null){
-            email.setVisibility(View.INVISIBLE);
-            emailTV.setVisibility(View.INVISIBLE);
+            email.setVisibility(View.GONE);
+            emailTV.setVisibility(View.GONE);
         }
         else{
             email.setText(official.getEmail());

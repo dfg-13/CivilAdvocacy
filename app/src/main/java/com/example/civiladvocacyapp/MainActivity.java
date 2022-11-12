@@ -45,10 +45,9 @@ public class MainActivity extends AppCompatActivity
     private static final int LOCATION_REQUEST = 111;
 
     private RecyclerView recyclerView;
-    //private OfficialAdapter oAdapter;
     private static final String TAG = "MainActivity";
-    private OfficialAdapter oAdapter;
     private List<Official> officials = new ArrayList<>();
+    private OfficialAdapter oAdapter;
     private TextView locationTV;
 
     @Override
@@ -58,7 +57,7 @@ public class MainActivity extends AppCompatActivity
         setTitle("Civil Advocacy");
         //RecyclerView stuff
         recyclerView = findViewById(R.id.person_rv);
-        OfficialAdapter oAdapter = new OfficialAdapter(officials, this);
+        oAdapter = new OfficialAdapter(officials, this);
         recyclerView.setAdapter(oAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
@@ -78,9 +77,6 @@ public class MainActivity extends AppCompatActivity
             dialog.show();
         }
 
-        for (int i = 0; i <= 10; i++) {
-            officials.add(new Official("Joe Biden", "President of the United States"));
-        }
     }
 
     @Override
@@ -110,8 +106,8 @@ public class MainActivity extends AppCompatActivity
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             //TODO: set the location -> do API stuff
-                            OfficialRunnable oRun = new OfficialRunnable(MainActivity.this, locationInput.getText().toString());
                             officials.clear();
+                            OfficialRunnable oRun = new OfficialRunnable(MainActivity.this, locationInput.getText().toString());
                             locationTV.setText(locationInput.getText().toString());
                             Toast.makeText(MainActivity.this, "Searched for location", Toast.LENGTH_SHORT).show();
                             new Thread(oRun).start();
@@ -142,6 +138,7 @@ public class MainActivity extends AppCompatActivity
                     if (location != null) {
                         loc = getPlace(location);
                         locationTV.setText(loc);
+                        officials.clear();
                         OfficialRunnable or = new OfficialRunnable(this, loc);
                         new Thread(or).start();
                     }

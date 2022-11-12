@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cl"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -81,14 +82,14 @@
 
     <TextView
         android:id="@+id/office_tv"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="@string/office_role"
         android:textAlignment="center"
         android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="@+id/official_name_tv"
-        app:layout_constraintStart_toStartOf="@+id/official_name_tv"
+        app:layout_constraintEnd_toStartOf="@+id/guideline15"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/official_name_tv" />
 
     <TextView
@@ -104,51 +105,60 @@
 
     <TextView
         android:id="@+id/addressResult"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:text="@string/full_address"
         android:textSize="16sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/addressTV"
         app:layout_constraintBottom_toBottomOf="@+id/addressTV"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/addressTV" />
 
     <TextView
         android:id="@+id/phoneResult"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:text="@string/full_phone_number"
         android:textSize="16sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/phoneTV"
         app:layout_constraintBottom_toBottomOf="@+id/phoneTV"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/phoneTV" />
 
     <TextView
         android:id="@+id/emailResult"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:text="@string/full_email_address"
         android:textSize="16sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/emailTV"
         app:layout_constraintBottom_toBottomOf="@+id/emailTV"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/emailTV" />
 
     <TextView
         android:id="@+id/siteResult"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:text="@string/full_website"
         android:textSize="16sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/websiteTV"
         app:layout_constraintBottom_toBottomOf="@+id/websiteTV"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/websiteTV" />
 
     <ImageView
         android:id="@+id/photo_iv"
-        android:layout_width="180dp"
-        android:layout_height="210dp"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="32dp"
+        android:cropToPadding="false"
         android:onClick="clickPhoto"
         app:layout_constraintBottom_toTopOf="@+id/guideline12"
         app:layout_constraintEnd_toEndOf="parent"
@@ -160,6 +170,7 @@
         android:id="@+id/addressTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
         android:layout_marginEnd="56dp"
         android:text="@string/address"
         android:textSize="16sp"
@@ -171,33 +182,38 @@
         android:id="@+id/phoneTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="40dp"
         android:text="@string/phone"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="@+id/addressTV"
-        app:layout_constraintStart_toStartOf="@+id/addressTV"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/addressTV" />
 
     <TextView
         android:id="@+id/emailTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="40dp"
         android:text="@string/email"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="@+id/phoneTV"
-        app:layout_constraintStart_toStartOf="@+id/phoneTV"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/phoneTV" />
 
     <TextView
         android:id="@+id/websiteTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="32dp"
         android:text="@string/website"
         android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline14"
         app:layout_constraintEnd_toEndOf="@+id/emailTV"
-        app:layout_constraintStart_toStartOf="@+id/emailTV"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/emailTV" />
 
     <ImageView
@@ -234,7 +250,6 @@
         android:id="@+id/partyLogo"
         android:layout_width="35dp"
         android:layout_height="35dp"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="24dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline15"

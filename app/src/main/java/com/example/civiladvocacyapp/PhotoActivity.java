@@ -45,12 +45,15 @@ public class PhotoActivity extends AppCompatActivity {
 
         profilePic = findViewById(R.id.fullPhoto);
         partyLogo = findViewById(R.id.party);
-        cl = findViewById(R.id.ConstraintLayout);
+        cl = findViewById(R.id.cl);
         personName = findViewById(R.id.pName);
         personRole = findViewById(R.id.pRole);
         location = findViewById(R.id.location_tv);
 
         Intent intent = getIntent();
+        if (intent.hasExtra("OFFICIAL_INFO")){
+            official = (Official) intent.getSerializableExtra("OFFICIAL_INFO");
+        }
         if (intent.hasExtra("LOCATION")){
             location.setText(intent.getStringExtra("LOCATION"));
         }
