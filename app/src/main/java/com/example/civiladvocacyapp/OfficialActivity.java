@@ -83,7 +83,7 @@ public class OfficialActivity extends AppCompatActivity {
             Glide.with(this)
                     .load(official.getPhotoLink())
                     .placeholder(R.drawable.missing)
-                    .error(R.drawable.brokenimage)
+                    .error(R.drawable.missing)
                     .into(profilePic);
         }
         noImage();

@@ -164,6 +164,7 @@
         android:id="@+id/photo_iv"
         android:layout_width="180dp"
         android:layout_height="180dp"
+        android:onClick="clickPhoto"
         app:layout_constraintBottom_toTopOf="@+id/guideline14"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline15"

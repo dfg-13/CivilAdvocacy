@@ -22,8 +22,8 @@
 
     <ImageView
         android:id="@+id/fullPhoto"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline23"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline21"
@@ -36,7 +36,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="@string/official_name"
-        android:textSize="20sp"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
         app:layout_constraintEnd_toStartOf="@+id/guideline21"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/location_tv" />
@@ -47,15 +49,17 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="@string/office_role"
-        android:textSize="16sp"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
         app:layout_constraintEnd_toStartOf="@+id/guideline21"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/pName" />
 
     <ImageView
         android:id="@+id/party"
-        android:layout_width="82dp"
-        android:layout_height="95dp"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
         android:onClick="clickLogo"
         app:layout_constraintBottom_toTopOf="@+id/guideline23"
         app:layout_constraintEnd_toStartOf="@+id/guideline21"
