@@ -2,6 +2,8 @@ package com.example.civiladvocacyapp;
 
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
@@ -227,16 +229,22 @@ public class OfficialActivity extends AppCompatActivity {
         }
     }
 
+    public Intent openFbIntent(){
+        try {
+            getPackageManager().getPackageInfo("com.facebook.katana", 0);
+            return new Intent(Intent.ACTION_VIEW, Uri.parse("fb://page/" + fbLink));
+        } catch (Exception e) {
+            return new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.facebook.com/" + fbLink));
+        }
+    }
+
     public void clickFb(View v){
         Intent intent = null;
+        String facebookURL = "https://www.facebook.com/";
         try {
-            intent = new Intent(Intent.ACTION_VIEW);
-            intent.setPackage("com.google.android.youtube");
-            intent.setData(Uri.parse("https://www.youtube.com/" + fbLink));
-            startActivity(intent);
+            startActivity(openFbIntent());
         } catch (ActivityNotFoundException e) {
-            startActivity(new Intent(Intent.ACTION_VIEW,
-                    Uri.parse("https://www.youtube.com/" + fbLink)));
+            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com/" + fbLink)));
         }
     }
 
