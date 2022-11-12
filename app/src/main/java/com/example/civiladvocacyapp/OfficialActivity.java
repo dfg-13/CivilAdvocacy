@@ -243,7 +243,7 @@ public class OfficialActivity extends AppCompatActivity {
     public void clickPhoto(View v){
         if(official.getPhotoLink() != null){
             Intent intent = new Intent(this, PhotoActivity.class);
-            intent.putExtra("LOCATION", address.getText().toString());
+            intent.putExtra("LOCATION", location.getText().toString());
             intent.putExtra("OFFICIAL_INFO", official);
             startActivity(intent);
         }
