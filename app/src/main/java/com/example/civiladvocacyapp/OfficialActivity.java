@@ -219,13 +219,12 @@ public class OfficialActivity extends AppCompatActivity {
     public void clickTwitter(View v){
         Intent intent = null;
         try {
-            intent = new Intent(Intent.ACTION_VIEW);
-            intent.setPackage("com.google.android.youtube");
-            intent.setData(Uri.parse("https://www.youtube.com/" + tLink));
+            intent = new Intent(Intent.ACTION_VIEW,
+                    Uri.parse("twitter://user?screen_name=" + tLink));
             startActivity(intent);
         } catch (ActivityNotFoundException e) {
             startActivity(new Intent(Intent.ACTION_VIEW,
-                    Uri.parse("https://www.youtube.com/" + tLink)));
+                    Uri.parse("https://twitter.com/" + tLink)));
         }
     }
 

@@ -243,6 +243,7 @@
         android:layout_width="35dp"
         android:layout_height="35dp"
         android:layout_marginBottom="32dp"
+        android:onClick="clickTwitter"
         app:layout_constraintBottom_toTopOf="@+id/guideline12"
         app:layout_constraintEnd_toStartOf="@+id/ytLogo"
         app:layout_constraintStart_toEndOf="@+id/fbLogo"
@@ -254,6 +255,7 @@
         android:layout_height="35dp"
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="32dp"
+        android:onClick="clickYT"
         app:layout_constraintBottom_toTopOf="@+id/guideline12"
         app:layout_constraintEnd_toStartOf="@+id/guideline15"
         app:srcCompat="@drawable/youtube" />
