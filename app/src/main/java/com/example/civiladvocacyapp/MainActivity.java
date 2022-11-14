@@ -8,7 +8,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
+import com.google.android.gms.location.LocationListener;
 import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -20,6 +20,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.text.InputType;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -29,6 +30,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 
@@ -134,7 +136,7 @@ public class MainActivity extends AppCompatActivity
             return;
         }
         mFusedLocationClient.getLastLocation()
-                .addOnSuccessListener(this, location -> {
+                .addOnSuccessListener(this, location -> { //TODO: location is giving null. FIX THIS
                     // Got last known location. In some situations this can be null.
                     if (location != null) {
                         loc = getPlace(location);
@@ -159,7 +161,7 @@ public class MainActivity extends AppCompatActivity
                 if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     determineLocation();
                 } else {
-                    locationTV.setText("No data for location");
+                    locationTV.setText("No location");
                 }
             }
         }
