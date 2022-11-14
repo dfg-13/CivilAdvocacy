@@ -8,7 +8,10 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationListener;
+
 import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -32,7 +35,10 @@ import android.widget.Toast;
 
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.tasks.OnSuccessListener;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -74,7 +80,8 @@ public class MainActivity extends AppCompatActivity
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setTitle("No Network Connection");
             builder.setMessage("Data cannot be accessed/loaded  without a network connection");
-            builder.setPositiveButton("OK", (dialog, id) -> {});
+            builder.setPositiveButton("OK", (dialog, id) -> {
+            });
             AlertDialog dialog = builder.create();
             dialog.show();
         }
@@ -144,6 +151,9 @@ public class MainActivity extends AppCompatActivity
                         officials.clear();
                         OfficialRunnable or = new OfficialRunnable(this, loc);
                         new Thread(or).start();
+                    }
+                    else{
+                        locationTV.setText("Null Location");
                     }
                 })
                 .addOnFailureListener(this, e ->
