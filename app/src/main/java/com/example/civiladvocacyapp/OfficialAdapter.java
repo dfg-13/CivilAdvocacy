@@ -22,6 +22,7 @@ public class OfficialAdapter extends RecyclerView.Adapter<OfficialViewHolder>{
     private static final String TAG = "OfficialAdapter";
     private final List<Official> officialList;
     private final MainActivity mainAct;
+    private long start;
 
 
     public OfficialAdapter(List<Official> officialList, MainActivity mAct) {
@@ -49,6 +50,18 @@ public class OfficialAdapter extends RecyclerView.Adapter<OfficialViewHolder>{
         holder.name.setText(name + " (" + party + ")");
         holder.title.setText(official.getGovernmentTitle());
         //holder.picture.;
+        if (official.getPhotoLink() != null){
+            Glide.with(holder.picture.getContext())
+                    .load(official.getPhotoLink())
+                    .into(holder.picture);
+        }
+        else{ //glide error
+            Glide.with(holder.picture.getContext())
+                    .load(official.getPhotoLink())
+                    .error(R.drawable.missing)
+                    .into(holder.picture);
+        }
+        //if picture is just white then it is bad gateway 404 error
 
     }
 
@@ -56,4 +69,5 @@ public class OfficialAdapter extends RecyclerView.Adapter<OfficialViewHolder>{
     public int getItemCount() {
         return officialList.size();
     }
+
 }
