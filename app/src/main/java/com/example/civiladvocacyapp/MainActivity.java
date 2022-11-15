@@ -2,6 +2,7 @@ package com.example.civiladvocacyapp;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -9,6 +10,7 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationListener;
 
@@ -22,6 +24,7 @@ import android.location.Location;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.os.Looper;
 import android.text.InputType;
 import android.util.Log;
 import android.view.Gravity;
@@ -46,11 +49,15 @@ import java.util.List;
 import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity
-        implements View.OnClickListener {
+        implements View.OnClickListener, GoogleApiClient.ConnectionCallbacks,
+        GoogleApiClient.OnConnectionFailedListener,
+        LocationListener {
 
     private String loc;
     private FusedLocationProviderClient mFusedLocationClient;
     private static final int LOCATION_REQUEST = 111;
+    private LocationRequest mLocationRequest;
+    private GoogleApiClient mGoogleApiClient;
 
     private RecyclerView recyclerView;
     private static final String TAG = "MainActivity";
@@ -63,6 +70,14 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setTitle("Civil Advocacy");
+
+        mGoogleApiClient = new GoogleApiClient.Builder(this)
+                .addApi(LocationServices.API)
+                .addConnectionCallbacks((GoogleApiClient.ConnectionCallbacks) this)
+                .addOnConnectionFailedListener((GoogleApiClient.OnConnectionFailedListener) this)
+                .build();
+
+        mGoogleApiClient.connect();
         //RecyclerView stuff
         recyclerView = findViewById(R.id.person_rv);
         oAdapter = new OfficialAdapter(officials, this);
@@ -70,7 +85,7 @@ public class MainActivity extends AppCompatActivity
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
-        determineLocation();
+
 
         locationTV = findViewById(R.id.location_tv);
 
@@ -85,7 +100,7 @@ public class MainActivity extends AppCompatActivity
             AlertDialog dialog = builder.create();
             dialog.show();
         }
-
+        determineLocation();
     }
 
     @Override
@@ -103,7 +118,7 @@ public class MainActivity extends AppCompatActivity
                 startActivity(intent);
                 return true;
             case R.id.searchLocation:
-                try{
+                try {
                     AlertDialog.Builder builder = new AlertDialog.Builder(this);
                     builder.setTitle("Enter Address");
                     EditText locationInput = new EditText(this);
@@ -128,7 +143,7 @@ public class MainActivity extends AppCompatActivity
                     });
                     AlertDialog dialog = builder.create();
                     dialog.show();
-                } catch (Exception e){
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             default:
@@ -142,18 +157,23 @@ public class MainActivity extends AppCompatActivity
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, LOCATION_REQUEST);
             return;
         }
+
         mFusedLocationClient.getLastLocation()
                 .addOnSuccessListener(this, location -> { //TODO: location is giving null. FIX THIS
                     // Got last known location. In some situations this can be null.
-                    if (location != null) {
+                    if (location != null) { //make sure that Google Maps is opened before
                         loc = getPlace(location);
                         locationTV.setText(loc);
                         officials.clear();
                         OfficialRunnable or = new OfficialRunnable(this, loc);
                         new Thread(or).start();
-                    }
-                    else{
+                    } else {
                         locationTV.setText("Null Location");
+                        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                        builder.setMessage("Open Google Maps and reopen CivilAdvocacyApp");
+                        builder.setPositiveButton("Ok", (dialog, id) -> {});
+                        AlertDialog dialog = builder.create();
+                        dialog.show();
                     }
                 })
                 .addOnFailureListener(this, e ->
@@ -214,9 +234,42 @@ public class MainActivity extends AppCompatActivity
         return (networkInfo != null && networkInfo.isConnectedOrConnecting());
     }
 
-    public void addNewOff(Official o){
+    public void addNewOff(Official o) {
         officials.add(o);
         oAdapter.notifyDataSetChanged();
     }
 
+    @Override
+    public void onConnected(@Nullable Bundle bundle) {
+        mLocationRequest = LocationRequest.create();
+        mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+        mLocationRequest.setInterval(1000); // Update location every second
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
+        LocationServices.FusedLocationApi.requestLocationUpdates(
+                mGoogleApiClient, mLocationRequest, this);
+    }
+
+    @Override
+    public void onConnectionSuspended(int i) {
+
+    }
+
+    @Override
+    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+
+    }
+
+    @Override
+    public void onLocationChanged(@NonNull Location location) {
+
+    }
 }
